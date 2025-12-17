@@ -31,5 +31,51 @@ public class Playlist {
         }
 
     }
+    public void SupprimerMusique(String titre){
+        for(int i=0; i < musiques.size();i++){
+            if(musiques.get(i).getTitre()==titre){
+                musiques.remove(i);
+                System.out.println("Musique supprimé!");
+
+            }
+            else{
+                System.out.println("musique non trouvée");
+            }
+        }
+    }
+    public int NombreMusique(){
+        return musiques.size();
+    }
+    public int dureeTotal(){
+        int total=0;
+        for(Musique m : musiques){
+            total = total+m.getDuree();
+        }
+        return total;
+    }
+    public void rechercherMusique(String titre){
+        for(Musique m : musiques){
+            if(m.getTitre()== titre){
+                System.out.println("recherche par titre:   ");m.afficherLesDetails();
+            }
+        }
+    }
+    public void afficherAlphabetique(){
+        ArrayList<Musique> copieMusique = new ArrayList<>(musiques);
+        for(int i=0; i<copieMusique.size();i++){
+            for(int j=i+1;j<copieMusique.size();j++){
+                if(copieMusique.get(i).getTitre().compareTo(copieMusique.get(j).getTitre())>0){
+                    Musique change = copieMusique.get(i);
+                    copieMusique.set(i,copieMusique.get(i));
+                    copieMusique.set(j,change);
+                }
+            }
+        }
+        System.out.println("Ordre alphabetique:   ");
+        for (Musique m : copieMusique){
+         ; m.afficherLesDetails();
+        }
+    }
+
 
 }
